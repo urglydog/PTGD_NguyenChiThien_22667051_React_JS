@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess My Number</title>
+    <style>
+        body {
+            background-color: #222;
+            color: white;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+
+        .number {
+            display: inline-block;
+            background: #333;
+            font-size: 3rem;
+            width: 15rem;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .guess,
+        button {
+            margin: 10px;
+            padding: 10px;
+            font-size: 1rem;
+        }
+
+        button {
+            background-color: #444;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>JavaScript in the Browser: DOM and Events</h1>
+    <h1>Guess My Number!</h1>
+    <p class="message">Start guessing...</p>
+    <div>
+        <span>💯 Score: <span class="score">20</span></span>
+    </div>
+    <div class="number">?</div>
+    <input class="guess" type="number" placeholder="Enter your guess">
+    <button class="again">Again!</button>
+    <script src="./home.js"></script>
+</body>
+
+</html>
