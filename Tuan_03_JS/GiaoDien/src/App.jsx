@@ -7,33 +7,25 @@ import Button from './component/Button'
 import Header from './component/Header'
 import logo from "./img/logo.PNG?url"
 import avt from "./img/avt.PNG?url"
+import Footer from './component/Footer'
 // import FilterPanel from './component/FilterPanel'
 function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <>
-      <Header
+    <div className="container">
+      <Header className="header"
         img={logo}
         filterPops
         navigator={["What to cook", "Recipes", "Ingredients", "Occasions", "About us"]}
         buttonProps={{ img: "../icons/inbox.SVG", text: "Your Recipe Box", color: "#CD7595" }}
         linkImg={avt}
       ></Header>
-
-      {/* <FilterPanel
-        cookingMethods={[
-          "Grilled",
-          "Roasted",
-          "Pan-fried",
-          "Stir-fried",
-          "Sauteed",
-          "Baked",
-          "Steamed",
-          "Stewed"]}
-        themeColor="CD7595"
-      ></FilterPanel> */}
-    </>
+      <div className="content">
+        
+      </div>
+      <Footer className="footer" />
+    </div>
   )
 }
 
