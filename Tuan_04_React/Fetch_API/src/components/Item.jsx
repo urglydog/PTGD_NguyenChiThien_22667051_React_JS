@@ -1,5 +1,5 @@
 import '../css/Item.css';
-export default function Item(img,decribe,minute){
+export default function Item({img,decribe,minute}){
     return(
         <div className="container">
             <img  src={img} alt="img"/>

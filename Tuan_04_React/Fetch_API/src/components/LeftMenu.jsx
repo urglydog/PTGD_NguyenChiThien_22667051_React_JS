@@ -1,25 +1,25 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 import Item from "./Item";
-export default function LeftMenu(){
-    var arr = [];
-    const [arr,setArr] = useState([]);
-    var url = "";
 
-    useEffect(()=>{
-        var fn = fetch(url).then((r)=>r.json).then((data)=>{
-            setArr(data);
-        })
-    })
+export default function LeftMenu() {
+    const [arr, setArr] = useState([]);
+    const url = "https://67c8505e0acf98d07085fc8a.mockapi.io/Item";
 
-    return(
-        <>
+    useEffect(() => {
+        fetch(url)
+            .then((r) => r.json()) // Sửa lỗi .json() 
+            .then((data) => {
+                setArr(data);
+            });
+    }, []); // Thêm [] để tránh gọi API liên tục
+
+    return (
         <ul>
-            {arr.map((item,index)=>{
+            {arr.map((item, index) => (
                 <li key={index}>
-                    <Item img={item.img} descibe = {item.descibe} minute = {item.minute}/>
+                    <Item img={item.img} decribe={item.descibe} minute={item.minute} />
                 </li>
-            })}
+            ))}
         </ul>
-        </>
-    )
+    );
 }
