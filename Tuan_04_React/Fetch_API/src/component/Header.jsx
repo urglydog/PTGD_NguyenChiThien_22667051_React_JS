@@ -1,6 +1,6 @@
 import Button from "./Button"
 import Filter from "./filter"
-import './Header.css'
+
 const Header = ({ img, filterProps, navigator, buttonProps, linkImg }) => {
     return (
         <>

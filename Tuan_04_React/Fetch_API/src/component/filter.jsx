@@ -1,4 +1,4 @@
-import "../component/filter.css"
+import '../css/filter.css'
 function Filter({}){
     return (
         <div className="filter" style={{display:"flex", backgroundColor:"#F3F4F6", padding:"10px", borderRadius:"30px"}}>

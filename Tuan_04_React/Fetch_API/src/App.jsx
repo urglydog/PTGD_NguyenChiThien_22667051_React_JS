@@ -8,6 +8,7 @@ import Header from './component/Header'
 import logo from "./img/logo.PNG?url"
 import avt from "./img/avt.PNG?url"
 import Footer from './component/Footer'
+// import LeftMenu from './component/LeftMenu'
 // import FilterPanel from './component/FilterPanel'
 function App() {
   const [count, setCount] = useState(0)
@@ -21,9 +22,7 @@ function App() {
         buttonProps={{ img: "../icons/inbox.SVG", text: "Your Recipe Box", color: "#CD7595" }}
         linkImg={avt}
       ></Header>
-      <div className="content">
-        
-      </div>
+      {/* <LeftMenu className="listProduct"/> */}
       <Footer className="footer" />
     </div>
   )

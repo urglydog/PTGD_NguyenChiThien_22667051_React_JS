@@ -1,4 +1,4 @@
-import '../component/Footer.css' // Import the specific CSS for Footer
+import '../css/Footer.css' // Import the specific CSS for Footer
 import logo from "../img/white_chefify.png?url"
 const Footer = () => {
   return (
