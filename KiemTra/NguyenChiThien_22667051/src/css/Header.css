@@ -1,0 +1,43 @@
+
+.header {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.header nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+}
+
+.header nav ul li {
+    margin: 0 1rem;
+}
+
+.header nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+.header nav ul li a:hover {
+    color: red;
+    text-decoration: none;
+}
+.header button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.header button:hover {
+    background-color: #0056b3;
+}
+
