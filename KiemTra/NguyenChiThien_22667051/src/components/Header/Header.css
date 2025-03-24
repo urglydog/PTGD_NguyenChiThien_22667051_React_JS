@@ -1,0 +1,19 @@
+.header{
+    width: 100%;
+    position: sticky;
+    top: 0;
+    border-radius: 20px;
+    background-color: aqua;
+}
+
+.header nav ul li{
+    list-style-type: none;
+    display: inline-block;
+    margin: auto 2rem;
+}
+.header nav ul li:first-child a{
+    color:  red !important;
+}
+.header nav ul li:hover a {
+    color: red;
+}
