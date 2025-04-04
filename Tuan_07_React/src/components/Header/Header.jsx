@@ -1,6 +1,8 @@
 import Button from '../Button/Button'
 import Filter from '../Filter/Filter'
 import '../Header/Header.css'
+import bell from '../../img/Bell 1.png?url'
+import question from '../../img/Question 1.png?url'
 // import '../Header/Header.css'
 const Header = ({ img, filterProps, navigator, buttonProps, linkImg }) => {
     return (
@@ -18,8 +20,8 @@ const Header = ({ img, filterProps, navigator, buttonProps, linkImg }) => {
                     ))}
                 </ul> */}
                 {/* <Button {...buttonProps} /> */}
-                <img src="../icons/bell.svg" alt="" />
-                <img src="../icons/help-circle.svg" alt="" />
+                <img src={bell} alt="" />
+                <img src={question} alt="" />
                 <a href="#"><img style={{ borderRadius: "5px", height:"40px" }} src={linkImg} alt="Profile" /></a>
             </div>
         </>

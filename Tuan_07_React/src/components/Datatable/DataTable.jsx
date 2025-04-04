@@ -2,99 +2,83 @@ import { useEffect, useRef, useState } from 'react';
 import $ from 'jquery';
 import 'datatables.net-dt';
 import 'datatables.net-dt/css/dataTables.dataTables.min.css';
-import '../Datatable/DataTable.css'
-import report from '../../img/File text 1.png?url'
-import iport from '../../img/Download.png?url'
-import eport from '../../img/Move up.png?url'
+import '../Datatable/DataTable.css';
+import report from '../../img/File text 1.png?url';
+import iport from '../../img/Download.png?url';
+import eport from '../../img/Move up.png?url';
 
 function OrdersTable() {
     const tableRef = useRef(null);
     const [arr, setArr] = useState([]);
     const [selectedCustomer, setSelectedCustomer] = useState(null);
     const [editData, setEditData] = useState({});
+    const [isAdding, setIsAdding] = useState(false);
 
-    // Lấy dữ liệu khách hàng từ API
     useEffect(() => {
-        fetch("http://localhost:3002/customers") // jsonserver
-            .then((item) => item.json())
-            .then(json => setArr(json));
+        fetch("http://localhost:3002/customers")
+            .then((res) => res.json())
+            .then((json) => setArr(json));
     }, []);
 
-    // Khởi tạo DataTable khi có dữ liệu
     useEffect(() => {
-        if (arr.length === 0) return; // nếu không có dữ liệu thì không chạy
+        if (arr.length === 0) return;
         const table = $(tableRef.current).DataTable({
-            pageLength: 6, // Chỉ hiển thị 6 dòng mỗi trang
-            lengthChange: false, // Ẩn "Show entries"
-            searching: false, // Ẩn ô Search
-            language: {
-                info: "_TOTAL_ results"
-            }
+            pageLength: 6,
+            lengthChange: false,
+            searching: false,
+            language: { info: "_TOTAL_ results" }
         });
-
-        return () => {
-            table.destroy(); // Cleanup DataTable khi component unmount
-        };
+        return () => table.destroy();
     }, [arr]);
 
     const handleSave = async () => {
-        // Kiểm tra lại dữ liệu trước khi lưu
-        if (!editData.order_date) {
-            alert("Please select a valid date.");
+        if (!editData.name || !editData.company || !editData.order_value || !editData.order_date) {
+            alert("Please fill all fields.");
             return;
         }
-
-        const updatedData = {
+        const newCustomer = {
             ...editData,
-            order_value: parseFloat(editData.order_value), // Chuyển đổi order_value thành số
+            order_value: parseFloat(editData.order_value),
+            order_date: convertToDisplayFormat(editData.order_date),
         };
 
-        if (editData.order_date !== selectedCustomer.order_date) {
-            updatedData.order_date = convertToDisplayFormat(editData.order_date); // Chuyển lại ngày về định dạng dd/mm/yyyy
+        if (isAdding) {
+            const response = await fetch("http://localhost:3002/customers", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(newCustomer),
+            });
+            const addedCustomer = await response.json();
+            setArr([...arr, addedCustomer]);
         } else {
-            updatedData.order_date = selectedCustomer.order_date; // Nếu không thay đổi, giữ nguyên giá trị cũ
+            await fetch(`http://localhost:3002/customers/${selectedCustomer.id}`, {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(newCustomer),
+            });
+            setArr(arr.map(customer => customer.id === selectedCustomer.id ? newCustomer : customer));
         }
 
-        // Gửi yêu cầu PUT nếu có thay đổi
-        await fetch(`http://localhost:3002/customers/${selectedCustomer.id}`, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(updatedData)
-        });
-
-        // Cập nhật lại chỉ dòng đã thay đổi
-        setArr((prevArr) =>
-            prevArr.map((customer) =>
-                customer.id === selectedCustomer.id ? updatedData : customer
-            )
-        );
-
-        // Đóng modal
+        setIsAdding(false);
         setSelectedCustomer(null);
     };
 
-
-    // Chuyển đổi ngày từ dd/mm/yyyy thành yyyy-mm-dd
     const convertToDateInputFormat = (datestr) => {
         const [day, month, year] = datestr.split('/');
-        return `${year}-${month}-${day}`; // Chuyển đổi thành yyyy-mm-dd
+        return `${year}-${month}-${day}`;
     };
 
-    // Chuyển đổi ngày từ yyyy-mm-dd thành dd/mm/yyyy để hiển thị
     const convertToDisplayFormat = (datestr) => {
         const [year, month, day] = datestr.split('-');
-        return `${day}/${month}/${year}`; // Chuyển đổi lại thành dd/mm/yyyy
+        return `${day}/${month}/${year}`;
     };
 
     return (
         <div className="table-container">
-            {/* Modal */}
-            {selectedCustomer && (
+            {(selectedCustomer || isAdding) && (
                 <div className="modal">
                     <div className="modal-content">
-                        <h3>Edit Customer</h3>
+                        <h3>{isAdding ? "Add New Customer" : "Edit Customer"}</h3>
                         <label>Name:
                             <input value={editData.name} onChange={(e) => setEditData({ ...editData, name: e.target.value })} />
                         </label>
@@ -105,11 +89,7 @@ function OrdersTable() {
                             <input type="number" value={editData.order_value} onChange={(e) => setEditData({ ...editData, order_value: e.target.value })} />
                         </label>
                         <label>Order Date:
-                            <input
-                                type="date"
-                                value={convertToDateInputFormat(editData.order_date)}
-                                onChange={(e) => setEditData({ ...editData, order_date: e.target.value })} // Chỉ sử dụng e.target.value mà không cần format lại
-                            />
+                            <input type="date" value={convertToDateInputFormat(editData.order_date)} onChange={(e) => setEditData({ ...editData, order_date: e.target.value })} />
                         </label>
                         <label>Status:
                             <select value={editData.status} onChange={(e) => setEditData({ ...editData, status: e.target.value })}>
@@ -120,7 +100,7 @@ function OrdersTable() {
                         </label>
                         <div className="modal-buttons">
                             <button onClick={handleSave}>Save</button>
-                            <button onClick={() => setSelectedCustomer(null)}>Cancel</button>
+                            <button onClick={() => { setSelectedCustomer(null); setIsAdding(false); }}>Cancel</button>
                         </div>
                     </div>
                 </div>
@@ -129,6 +109,13 @@ function OrdersTable() {
             <div className="table_option">
                 <h2 className="table-title"><img src={report} alt="" />Detailed report</h2>
                 <div className="two_btn">
+                    <button type='button' className='btn btn_add' onClick={() => {
+                        setIsAdding(true);
+                        setEditData({ name: "", company: "", order_value: "", order_date: "", status: "New" });
+                        setSelectedCustomer(null);
+                    }}>
+                        <img src="../../icons/plus-square.svg" alt="" /> Add
+                    </button>
                     <button type='button' className='btn'><img src={iport} alt="" /> Import</button>
                     <button type='button' className='btn'><img src={eport} alt="" /> Export</button>
                 </div>
