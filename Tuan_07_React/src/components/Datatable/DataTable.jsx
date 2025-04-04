@@ -43,18 +43,18 @@ function OrdersTable() {
             alert("Please select a valid date.");
             return;
         }
-    
+
         const updatedData = {
             ...editData,
             order_value: parseFloat(editData.order_value), // Chuyển đổi order_value thành số
         };
-    
+
         if (editData.order_date !== selectedCustomer.order_date) {
             updatedData.order_date = convertToDisplayFormat(editData.order_date); // Chuyển lại ngày về định dạng dd/mm/yyyy
         } else {
             updatedData.order_date = selectedCustomer.order_date; // Nếu không thay đổi, giữ nguyên giá trị cũ
         }
-    
+
         // Gửi yêu cầu PUT nếu có thay đổi
         await fetch(`http://localhost:3002/customers/${selectedCustomer.id}`, {
             method: "PUT",
@@ -63,18 +63,18 @@ function OrdersTable() {
             },
             body: JSON.stringify(updatedData)
         });
-    
+
         // Cập nhật lại chỉ dòng đã thay đổi
         setArr((prevArr) =>
             prevArr.map((customer) =>
                 customer.id === selectedCustomer.id ? updatedData : customer
             )
         );
-    
+
         // Đóng modal
         setSelectedCustomer(null);
     };
-    
+
 
     // Chuyển đổi ngày từ dd/mm/yyyy thành yyyy-mm-dd
     const convertToDateInputFormat = (datestr) => {
@@ -95,20 +95,20 @@ function OrdersTable() {
                 <div className="modal">
                     <div className="modal-content">
                         <h3>Edit Customer</h3>
-                        <label>Name: 
+                        <label>Name:
                             <input value={editData.name} onChange={(e) => setEditData({ ...editData, name: e.target.value })} />
                         </label>
-                        <label>Company: 
+                        <label>Company:
                             <input value={editData.company} onChange={(e) => setEditData({ ...editData, company: e.target.value })} />
                         </label>
-                        <label>Order Value: 
+                        <label>Order Value:
                             <input type="number" value={editData.order_value} onChange={(e) => setEditData({ ...editData, order_value: e.target.value })} />
                         </label>
-                        <label>Order Date: 
-                            <input 
-                                type="date" 
-                                value={convertToDateInputFormat(editData.order_date)} 
-                                onChange={(e) => setEditData({ ...editData, order_date: e.target.value})} // Chỉ sử dụng e.target.value mà không cần format lại
+                        <label>Order Date:
+                            <input
+                                type="date"
+                                value={convertToDateInputFormat(editData.order_date)}
+                                onChange={(e) => setEditData({ ...editData, order_date: e.target.value })} // Chỉ sử dụng e.target.value mà không cần format lại
                             />
                         </label>
                         <label>Status:
@@ -165,10 +165,12 @@ function OrdersTable() {
                                 </span>
                             </td>
                             <td>
-                                <button className="edit-btn" onClick={() => {
-                                    setSelectedCustomer(customer);
-                                    setEditData(customer);
-                                }}>Edit</button>
+                                <button className="edit-btn"
+                                    // onClick={() => {
+                                    //     setSelectedCustomer(customer);
+                                    //     setEditData(customer);
+                                    // }}
+                                    >Edit</button>
                             </td>
                         </tr>
                     ))}

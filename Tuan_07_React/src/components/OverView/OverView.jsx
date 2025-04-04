@@ -39,9 +39,9 @@ function OverView() {
                 <h4>Overview</h4>
             </div>
             <div className="thongke">
-                {/* <Statistic label="Turnover" img={turnoverImg} data={`$${turnoverData}`} percent="5.39" className="turnover"/>
+                <Statistic label="Turnover" img={turnoverImg} data={`$${turnoverData}`} percent="5.39" className="turnover"/>
                 <Statistic label="Profit" img={profitImg} data={`$${profitData}`} percent="4.25" className="profit" />
-                <Statistic label="New customer" img={new_customerImg} data={newCustomerData} percent="6.84" className="new_customer" /> */}
+                <Statistic label="New customer" img={new_customerImg} data={newCustomerData} percent="6.84" className="new_customer" />
             </div>
         </div>
     );
