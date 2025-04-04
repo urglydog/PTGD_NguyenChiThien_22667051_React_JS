@@ -1,0 +1,28 @@
+.overview_container {
+    display: grid;
+    grid-template-areas: 
+        "label"
+        "statistic";
+    grid-template-columns: 1fr;
+}
+
+.overview_container > .label {
+    display: flex;
+    align-items: center;
+}
+
+.label img {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.thongke {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    width: 100%;
+    padding-top: 30px;
+}
+
+

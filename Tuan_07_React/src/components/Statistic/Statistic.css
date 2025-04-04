@@ -1,0 +1,52 @@
+.statistic{
+    display: grid;
+    grid-template-areas: 
+    "label label label img"
+    "data data data img"
+    "percent percent percent img"
+    ;
+    grid-template-columns: 3 fr 1fr;
+    gap: 2px;
+    text-align: left;
+    align-items: center;
+}
+
+.statistic{
+    padding: 10px;
+    border-radius: 20px;
+}
+.statistic > .label{
+    grid-area: label;
+    font-weight: bold;
+    width: 100%;
+}
+.statistic > .data{
+    grid-area: data;
+    font-size: 25px;
+    font-weight: bold;
+}
+.statistic > .percent{
+    grid-area: percent;
+    display: flex;
+}
+.statistic > .percent> p{
+    margin: 0px 0px 2px 5px;
+}
+.statistic > .img{
+    display: inline-block;
+}
+.percent > .percent_icon{
+    font-size: 15px;
+    font-weight: bold;
+    color: rgb(21, 111, 21);
+}
+
+.statistic.turnover{
+    background-color: #FFF0F5;
+}
+.statistic.profit{
+    background-color: #EFF6FF;
+}
+.statistic.new_customer{
+    background-color: #EFF6FF;
+}
