@@ -1,6 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
 import path from '../../constants/path';
-import logo from '../../img/Image 1858.png';
 import dashboardImg from '../../img/Squares four 1.png';
 import projectImg from '../../img/Folder.png';
 import teamImg from '../../img/Groups.png';
@@ -14,7 +13,6 @@ function DashBoard() {
 
     return (
         <div className="menu">
-            <img src={logo} alt="Logo" />
             <nav>
                 <ul>
                     <li className={location.pathname === path.dashboard ? 'active' : ''}>

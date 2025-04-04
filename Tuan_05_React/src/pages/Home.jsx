@@ -1,7 +1,8 @@
+import OrdersTable from '../components/Datatable/DataTable'
 function Home (){
     return(
         <>
-            <h1>Home</h1>
+            <OrdersTable></OrdersTable>
         </>
     )
 }

@@ -1,11 +1,11 @@
 .menu {
-    width: 250px;
     background-color: #fff;
-    padding: 20px;
+    /* margin-right: 15px; */
 }
 
 .menu img {
-    width: 100px; /* Logo */
+    width: 100px; 
+    margin-top: 50px;
     margin-bottom: 20px;
 }
 
@@ -15,13 +15,12 @@
 
 .menu ul li {
     list-style-type: none;
-    width: 100%;
     height: 20px;
     display: flex;
     align-items: center;
     padding: 10px 15px;
     border-radius: 8px;
-    /* transition: background 0.3s ease; */
+
 }
 
 .menu ul li img {
@@ -41,7 +40,7 @@
 
 .menu ul li:hover, 
 .menu ul li.active {
-    background-color: #ff4081; /* Màu hồng nổi bật */
+    background-color: #ff4081; 
 }
 
 .menu ul li:hover a, 
