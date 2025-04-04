@@ -166,11 +166,11 @@ function OrdersTable() {
                             </td>
                             <td>
                                 <button className="edit-btn"
-                                    // onClick={() => {
-                                    //     setSelectedCustomer(customer);
-                                    //     setEditData(customer);
-                                    // }}
-                                    >Edit</button>
+                                    onClick={() => {
+                                        setSelectedCustomer(customer);
+                                        setEditData(customer);
+                                    }}
+                                >Edit</button>
                             </td>
                         </tr>
                     ))}
