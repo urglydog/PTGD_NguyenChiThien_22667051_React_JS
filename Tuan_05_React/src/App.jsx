@@ -3,7 +3,7 @@ import { useState } from 'react'
 import './App.css'
 import { BrowserRouter ,Routes,Route} from 'react-router-dom'
 import Layout from './pages/Layout/Layout'
-import Home from './pages/Home'
+import Home from './pages/Home/Home/'
 import Project from './pages/Project/Project'
 import Teams from './pages/Teams/Teams'
 import Messages from './pages/Messages/Messages'
@@ -24,7 +24,6 @@ function App() {
             <Route path='/messages' element={<Messages/>}></Route>
             <Route path='/intergration' element={<Intergrations/>}></Route>
           </Route>
-
         </Routes>
       </BrowserRouter>
     </>
