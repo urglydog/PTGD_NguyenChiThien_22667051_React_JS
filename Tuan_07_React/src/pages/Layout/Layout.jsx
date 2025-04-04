@@ -33,16 +33,16 @@ function Layout() {
                 <div class="menu">
                     <DashBoard></DashBoard>
                 </div>
-                {/* <div className="img">
+                <div className="img">
                     <img src={group} alt="" />
-                </div> */}
+                </div>
                 <div className="trynow">
                     <h>V2.0 is available</h>
                     <button type="button" className="btn">Try now</button>
                 </div>
-                {/* <div className="overview">
+                <div className="overview">
                     <OverView></OverView>
-                </div> */}
+                </div>
                 <div class="content">
                     <Outlet></Outlet>
                 </div>
