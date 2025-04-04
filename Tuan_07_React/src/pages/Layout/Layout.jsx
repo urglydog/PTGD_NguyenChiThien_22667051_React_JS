@@ -13,10 +13,10 @@ import '../Layout/Layout.css'
 function Layout() {
     return (
         <>
-            {/* <div className="Layout">
-            </div> */}
+            <div className="Layout">
+            </div>
             <div class="container">
-                {/* <div class="header">
+                <div class="header">
                     <Header className="header"
                         img={logo}
                         filterPops
@@ -24,7 +24,7 @@ function Layout() {
                         buttonProps={{ img: "../icons/inbox.SVG", text: "Your Recipe Box", color: "#CD7595" }}
                         linkImg={avt}
                     ></Header>
-                </div> */}
+                </div>
                 <div className="logo1">
                     <img className="" src={logo1} alt="Logo" />
 
