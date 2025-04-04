@@ -26,7 +26,10 @@ function OrdersTable() {
             pageLength: 6,
             lengthChange: false,
             searching: false,
-            language: { info: "_TOTAL_ results" }
+            language: { info: "_TOTAL_ results" },
+            columnDefs: [
+                { width: "150px", targets: 5 } // Định nghĩa độ rộng cột Status
+            ]
         });
         return () => table.destroy();
     }, [arr]);
