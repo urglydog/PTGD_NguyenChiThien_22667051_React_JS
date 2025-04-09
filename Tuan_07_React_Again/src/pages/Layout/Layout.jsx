@@ -41,7 +41,7 @@ function Layout() {
                     <button type="button" className="btn">Try now</button>
                 </div>
                 <div className="overview">
-                    {/* <OverView></OverView> */}
+                    <OverView></OverView>
                 </div>
                 <div class="content">
                     <Outlet></Outlet>
