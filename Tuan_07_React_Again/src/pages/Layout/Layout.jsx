@@ -34,11 +34,11 @@ function Layout() {
                     <DashBoard></DashBoard>
                 </div>
                 <div className="img">
-                    {/* <img src={group} alt="" /> */}
+                    <img src={group} alt="" />
                 </div>
                 <div className="trynow">
-                    {/* <h>V2.0 is available</h>
-                    <button type="button" className="btn">Try now</button> */}
+                    <h>V2.0 is available</h>
+                    <button type="button" className="btn">Try now</button>
                 </div>
                 <div className="overview">
                     {/* <OverView></OverView> */}

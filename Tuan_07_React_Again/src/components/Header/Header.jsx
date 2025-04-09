@@ -7,22 +7,22 @@ import question from '../../img/Question 1.png?url'
 const Header = ({ img, filterProps, navigator, buttonProps, linkImg }) => {
     return (
         <>
-            <div className="nav" style={{ display: "flex", width: "100%", height: "50px", justifyContent: "space-between",alignItems:"center" , backgroundColor:"white"}}>
+            <div className="nav" style={{ display: "flex", width: "100%", height: "50px", justifyContent: "space-between", alignItems: "center", backgroundColor: "white" }}>
                 {/* <img  src={img} alt="logo" style={{ height: "100%" }} /> */}
-                {/* <h2>Dashboard</h2> */}
-                {/* <Filter {...filterProps}/> */}
+                <h2>Dashboard</h2>
+                <Filter {...filterProps} />
 
                 {/* <ul style={{ display: "flex", height: "100%", padding: "5px", alignItems: "center" }}>
                     {navigator.map((item, index) => (
-                        <a style={{color:"black"}} key={index} href="">
-                            <li  style={{ cursor: "pointer", display:"inline-block", marginLeft:"20px" }}>{item}</li>
+                        <a style={{ color: "black" }} key={index} href="">
+                            <li style={{ cursor: "pointer", display: "inline-block", marginLeft: "20px" }}>{item}</li>
                         </a>
                     ))}
                 </ul> */}
                 {/* <Button {...buttonProps} /> */}
-                {/* <img src={bell} alt="" />
+                <img src={bell} alt="" />
                 <img src={question} alt="" />
-                <a href="#"><img style={{ borderRadius: "5px", height:"40px" }} src={linkImg} alt="Profile" /></a> */}
+                <a href="#"><img style={{ borderRadius: "5px", height: "40px" }} src={linkImg} alt="Profile" /></a>
             </div>
         </>
     )

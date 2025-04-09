@@ -3,7 +3,7 @@ function Home (){
     return(
         <>
             {/* <OrdersTable></OrdersTable> */}
-            {/* <h1>Home page</h1> */}
+            <h1>This is Home page</h1>
         </>
     )
 }
