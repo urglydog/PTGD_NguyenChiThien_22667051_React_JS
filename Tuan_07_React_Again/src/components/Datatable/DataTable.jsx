@@ -136,7 +136,7 @@ function OrdersTable() {
                         <th></th>
                     </tr>
                 </thead>
-                {/* <tbody>
+                <tbody>
                     {arr.map((customer, index) => (
                         <tr key={index}>
                             <td><input type="checkbox" /></td>
@@ -164,7 +164,7 @@ function OrdersTable() {
                             </td>
                         </tr>
                     ))}
-                </tbody> */}
+                </tbody>
             </table>
         </div>
     );
