@@ -1,0 +1,50 @@
+.menu {
+    background-color: #fff;
+    /* margin-right: 15px; */
+}
+
+.menu img {
+    width: 100px; 
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+
+.menu ul {
+    padding: 0;
+}
+
+.menu ul li {
+    list-style-type: none;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    border-radius: 8px;
+
+}
+
+.menu ul li img {
+    width: 20px;
+    height: 20px;
+    margin-right: 15px;
+    margin-left: 15px;
+    margin-top: 15px;
+}
+
+.menu ul li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.menu ul li:hover, 
+.menu ul li.active {
+    background-color: #ff4081; 
+}
+
+.menu ul li:hover a, 
+.menu ul li.active a {
+    color: white;
+    font-weight: bold;
+}
