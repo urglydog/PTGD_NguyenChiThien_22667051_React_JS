@@ -247,6 +247,14 @@
       "order_date": "08/04/2025",
       "status": "In-progress",
       "id": "slBzHn5"
+    },
+    {
+      "name": "Nguyen Chi Thien",
+      "company": "IUH",
+      "order_value": 123,
+      "order_date": "10/04/2025",
+      "status": "New",
+      "id": "uxBtzpc"
     }
   ]
 }
