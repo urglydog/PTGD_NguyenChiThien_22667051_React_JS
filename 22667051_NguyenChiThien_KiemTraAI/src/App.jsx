@@ -2,13 +2,17 @@ import React, { useState } from 'react';
 
 function App() {
   const [products, setProducts] = useState([
-    { id: 1, name: "Áo thun", price: 120000, quantity: 10 },
-    { id: 2, name: "Quần jean", price: 250000, quantity: 5 },
-    { id: 3, name: "Giày sneaker", price: 800000, quantity: 2 }
+    { id: 1, name: "Áo thun", price: 120000, quantity: 10, category: "Thời trang" },
+    { id: 2, name: "Quần jean", price: 250000, quantity: 5, category: "Thời trang" },
+    { id: 3, name: "Giày sneaker", price: 800000, quantity: 2, category: "Thời trang" },
+    { id: 4, name: "Điện thoại", price: 1000000, quantity: 3, category: "Công nghệ" },
+    { id: 5, name: "Laptop", price: 2000000, quantity: 4, category: "Công nghệ" },
+    { id: 6, name: "Quạt điện", price: 500000, quantity: 6, category: "Gia dụng" }
   ]);
 
-  const [form, setForm] = useState({ name: '', price: '', quantity: '' });
+  const [form, setForm] = useState({ name: '', price: '', quantity: '', category: '' });
   const [searchTerm, setSearchTerm] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -16,7 +20,7 @@ function App() {
   };
 
   const handleAdd = () => {
-    if (!form.name || !form.price || !form.quantity) {
+    if (!form.name || !form.price || !form.quantity || !form.category) {
       alert("Vui lòng điền đầy đủ thông tin!");
       return;
     }
@@ -25,11 +29,12 @@ function App() {
       id: Date.now(),
       name: form.name,
       price: parseInt(form.price),
-      quantity: parseInt(form.quantity)
+      quantity: parseInt(form.quantity),
+      category: form.category
     };
 
     setProducts(prev => [...prev, newProduct]);
-    setForm({ name: '', price: '', quantity: '' });
+    setForm({ name: '', price: '', quantity: '', category: '' });
   };
 
   const handleDelete = (id) => {
@@ -39,9 +44,10 @@ function App() {
     }
   };
 
-  // Hàm lọc sản phẩm theo từ khóa tìm kiếm
+  // Hàm lọc sản phẩm theo từ khóa tìm kiếm và thể loại
   const filteredProducts = products.filter(product =>
-    product.name.toLowerCase().includes(searchTerm.toLowerCase())
+    product.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
+    (selectedCategory ? product.category === selectedCategory : true)
   );
 
   return (
@@ -57,6 +63,20 @@ function App() {
           onChange={(e) => setSearchTerm(e.target.value)}
           className="border border-gray-300 px-4 py-2 rounded w-full sm:w-auto"
         />
+      </div>
+
+      {/* Dropdown chọn thể loại */}
+      <div className="mb-4">
+        <select
+          value={selectedCategory}
+          onChange={(e) => setSelectedCategory(e.target.value)}
+          className="border border-gray-300 px-4 py-2 rounded w-full sm:w-auto"
+        >
+          <option value="">Chọn thể loại</option>
+          <option value="Thời trang">Thời trang</option>
+          <option value="Công nghệ">Công nghệ</option>
+          <option value="Gia dụng">Gia dụng</option>
+        </select>
       </div>
 
       {/* Form thêm sản phẩm */}
@@ -85,6 +105,17 @@ function App() {
           onChange={handleChange}
           className="border border-gray-300 px-4 py-2 rounded w-full sm:w-auto"
         />
+        <select
+          name="category"
+          value={form.category}
+          onChange={handleChange}
+          className="border border-gray-300 px-4 py-2 rounded w-full sm:w-auto"
+        >
+          <option value="">Chọn thể loại</option>
+          <option value="Thời trang">Thời trang</option>
+          <option value="Công nghệ">Công nghệ</option>
+          <option value="Gia dụng">Gia dụng</option>
+        </select>
         <button
           onClick={handleAdd}
           className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700"
@@ -100,6 +131,7 @@ function App() {
             <th className="border px-4 py-2">Tên sản phẩm</th>
             <th className="border px-4 py-2">Giá</th>
             <th className="border px-4 py-2">Tồn kho</th>
+            <th className="border px-4 py-2">Thể loại</th>
             <th className="border px-4 py-2">Hành động</th>
           </tr>
         </thead>
@@ -109,6 +141,7 @@ function App() {
               <td className="border px-4 py-2">{product.name}</td>
               <td className="border px-4 py-2">{product.price.toLocaleString()} đ</td>
               <td className="border px-4 py-2">{product.quantity}</td>
+              <td className="border px-4 py-2">{product.category}</td>
               <td className="border px-4 py-2">
                 <button
                   onClick={() => handleDelete(product.id)}
