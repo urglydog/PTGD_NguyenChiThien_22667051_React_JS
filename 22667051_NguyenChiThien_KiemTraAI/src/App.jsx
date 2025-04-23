@@ -1,18 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function App() {
-  const [products, setProducts] = useState([
+  // Khởi tạo state từ localStorage nếu có, nếu không thì dùng giá trị mặc định
+  const initialProducts = JSON.parse(localStorage.getItem('products')) || [
     { id: 1, name: "Áo thun", price: 120000, quantity: 10, category: "Thời trang" },
     { id: 2, name: "Quần jean", price: 250000, quantity: 5, category: "Thời trang" },
     { id: 3, name: "Giày sneaker", price: 800000, quantity: 2, category: "Thời trang" },
     { id: 4, name: "Điện thoại", price: 1000000, quantity: 3, category: "Công nghệ" },
     { id: 5, name: "Laptop", price: 2000000, quantity: 4, category: "Công nghệ" },
     { id: 6, name: "Quạt điện", price: 500000, quantity: 6, category: "Gia dụng" }
-  ]);
+  ];
 
+  const [products, setProducts] = useState(initialProducts);
   const [form, setForm] = useState({ name: '', price: '', quantity: '', category: '' });
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
+
+  // Cập nhật localStorage mỗi khi sản phẩm thay đổi
+  useEffect(() => {
+    localStorage.setItem('products', JSON.stringify(products));
+  }, [products]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
