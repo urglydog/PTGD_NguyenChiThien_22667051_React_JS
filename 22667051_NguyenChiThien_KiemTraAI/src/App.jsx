@@ -1,7 +1,7 @@
+// App.js
 import React, { useState, useEffect } from 'react';
-
+import ProductList from './components/ProductList'
 function App() {
-  // Khởi tạo state từ localStorage nếu có, nếu không thì dùng giá trị mặc định
   const initialProducts = JSON.parse(localStorage.getItem('products')) || [
     { id: 1, name: "Áo thun", price: 120000, quantity: 10, category: "Thời trang" },
     { id: 2, name: "Quần jean", price: 250000, quantity: 5, category: "Thời trang" },
@@ -16,7 +16,6 @@ function App() {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
 
-  // Cập nhật localStorage mỗi khi sản phẩm thay đổi
   useEffect(() => {
     localStorage.setItem('products', JSON.stringify(products));
   }, [products]);
@@ -51,13 +50,11 @@ function App() {
     }
   };
 
-  // Hàm lọc sản phẩm theo từ khóa tìm kiếm và thể loại
   const filteredProducts = products.filter(product =>
     product.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
     (selectedCategory ? product.category === selectedCategory : true)
   );
 
-  // Tính tổng sản phẩm và tổng tồn kho
   const totalProducts = filteredProducts.length;
   const totalStock = filteredProducts.reduce((acc, product) => acc + product.quantity, 0);
 
@@ -65,7 +62,7 @@ function App() {
     <div className="p-6 max-w-4xl mx-auto font-sans">
       <h1 className="text-2xl font-bold mb-4 text-blue-600">Danh sách sản phẩm</h1>
 
-      {/* Ô tìm kiếm */}
+      {/* Tìm kiếm và chọn thể loại */}
       <div className="mb-4">
         <input
           type="text"
@@ -75,8 +72,6 @@ function App() {
           className="border border-gray-300 px-4 py-2 rounded w-full sm:w-auto"
         />
       </div>
-
-      {/* Dropdown chọn thể loại */}
       <div className="mb-4">
         <select
           value={selectedCategory}
@@ -90,7 +85,7 @@ function App() {
         </select>
       </div>
 
-      {/* Hiển thị tổng sản phẩm và tổng tồn kho */}
+      {/* Tổng số sản phẩm và tồn kho */}
       <div className="mb-6">
         <p><strong>Tổng số sản phẩm:</strong> {totalProducts}</p>
         <p><strong>Tổng tồn kho:</strong> {totalStock}</p>
@@ -141,36 +136,8 @@ function App() {
         </button>
       </div>
 
-      {/* Bảng danh sách */}
-      <table className="w-full table-auto border-collapse border border-gray-300">
-        <thead className="bg-gray-100">
-          <tr>
-            <th className="border px-4 py-2">Tên sản phẩm</th>
-            <th className="border px-4 py-2">Giá</th>
-            <th className="border px-4 py-2">Tồn kho</th>
-            <th className="border px-4 py-2">Thể loại</th>
-            <th className="border px-4 py-2">Hành động</th>
-          </tr>
-        </thead>
-        <tbody>
-          {filteredProducts.map(product => (
-            <tr key={product.id} className="hover:bg-gray-50">
-              <td className="border px-4 py-2">{product.name}</td>
-              <td className="border px-4 py-2">{product.price.toLocaleString()} đ</td>
-              <td className="border px-4 py-2">{product.quantity}</td>
-              <td className="border px-4 py-2">{product.category}</td>
-              <td className="border px-4 py-2">
-                <button
-                  onClick={() => handleDelete(product.id)}
-                  className="text-red-600 hover:underline"
-                >
-                  Xoá
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      {/* Hiển thị danh sách sản phẩm */}
+      <ProductList products={filteredProducts} onDelete={handleDelete} />
     </div>
   );
 }
