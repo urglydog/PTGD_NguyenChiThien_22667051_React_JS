@@ -50,6 +50,10 @@ function App() {
     (selectedCategory ? product.category === selectedCategory : true)
   );
 
+  // Tính tổng sản phẩm và tổng tồn kho
+  const totalProducts = filteredProducts.length;
+  const totalStock = filteredProducts.reduce((acc, product) => acc + product.quantity, 0);
+
   return (
     <div className="p-6 max-w-4xl mx-auto font-sans">
       <h1 className="text-2xl font-bold mb-4 text-blue-600">Danh sách sản phẩm</h1>
@@ -77,6 +81,12 @@ function App() {
           <option value="Công nghệ">Công nghệ</option>
           <option value="Gia dụng">Gia dụng</option>
         </select>
+      </div>
+
+      {/* Hiển thị tổng sản phẩm và tổng tồn kho */}
+      <div className="mb-6">
+        <p><strong>Tổng số sản phẩm:</strong> {totalProducts}</p>
+        <p><strong>Tổng tồn kho:</strong> {totalStock}</p>
       </div>
 
       {/* Form thêm sản phẩm */}
