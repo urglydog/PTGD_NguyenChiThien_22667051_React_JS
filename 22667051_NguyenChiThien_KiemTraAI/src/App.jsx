@@ -20,6 +20,7 @@ function App() {
       return;
     }
 
+
     const newProduct = {
       id: Date.now(),
       name: form.name,
@@ -30,7 +31,12 @@ function App() {
     setProducts(prev => [...prev, newProduct]);
     setForm({ name: '', price: '', quantity: '' });
   };
-
+  const handleDelete = (id) => {
+    const confirmDelete = confirm("Bạn có chắc muốn xoá sản phẩm này?");
+    if (confirmDelete) {
+      setProducts(prev => prev.filter(product => product.id !== id));
+    }
+  };
   return (
     <div className="p-6 max-w-4xl mx-auto font-sans">
       <h1 className="text-2xl font-bold mb-4 text-blue-600">Danh sách sản phẩm</h1>
@@ -85,7 +91,12 @@ function App() {
               <td className="border px-4 py-2">{product.name}</td>
               <td className="border px-4 py-2">{product.price.toLocaleString()} đ</td>
               <td className="border px-4 py-2">{product.quantity}</td>
-              <td className="border px-4 py-2 text-red-600 cursor-pointer hover:underline">Xoá</td>
+              <button
+                onClick={() => handleDelete(product.id)}
+                className="text-red-600 hover:underline"
+              >
+                Xoá
+              </button>
             </tr>
           ))}
         </tbody>
